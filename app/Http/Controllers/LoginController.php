@@ -31,7 +31,7 @@ class LoginController extends Controller
             'data' => [
                 'token' => $token
             ]
-        ])->setStatusCode(200);
+        ])->setStatusCode(201);
     }
 
     public function destroy(Request $request)
