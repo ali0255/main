@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('expires_at')->nullable();
-            $table->integer('user_id')->references('id')->on("users")->nullable()->index();
+            $table->integer('user_id')->references('id')->on("users");
             $table->timestamps();
         });
     }
