@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login', 'App\Http\Controllers\LoginController@store');
+Route::get('/get-me', 'App\Http\Controllers\LoginController@store');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
