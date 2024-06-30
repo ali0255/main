@@ -16,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login', 'App\Http\Controllers\LoginController@store');
+Route::get('/get-me', 'App\Http\Controllers\users\user@get_me');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+<<<<<<< HEAD
 Route::post('/users/store',[\App\Http\Controllers\UserController::class,'store']);
 Route::post('/users/update/{user}',[\App\Http\Controllers\UserController::class,'update']);
 Route::get('/users/show',[\App\Http\Controllers\UserController::class,'show']);
@@ -41,3 +45,6 @@ Route::middleware('auth:sanctum')->group(function (){
 
 
 });
+=======
+Route::get('/test', 'App\Http\Controllers\test\test@index');
+>>>>>>> b34b8033f47f6e9764005c90d718e4e327b9afe5
