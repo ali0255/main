@@ -47,4 +47,24 @@ class User extends Authenticatable
     {
         return $this->hasMany(PersonalAccessToken::class);
     }
+
+    public function tours(){
+        return $this->hasMany(Tour::class);
+    }
+
+
+    public function likes(){
+
+        return $this->belongsToMany(Tour::class,'likes')->withTimestamps();
+    }
+    public function likeTour(Tour $tour){
+        $like=$this->likes()->where('id',$tour->id)->exists();
+        if ($like){
+            $this->likes()->detach($tour);
+        } else{
+            $this->likes()->sync($tour);
+        }
+
+
+    }
 }
