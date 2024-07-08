@@ -48,20 +48,24 @@ class User extends Authenticatable
         return $this->hasMany(PersonalAccessToken::class);
     }
 
-    public function tours(){
+    public function tours()
+    {
         return $this->hasMany(Tour::class);
     }
 
 
-    public function likes(){
+    public function likes()
+    {
 
-        return $this->belongsToMany(Tour::class,'likes')->withTimestamps();
+        return $this->belongsToMany(Tour::class, 'likes')->withTimestamps();
     }
-    public function likeTour(Tour $tour){
-        $like=$this->likes()->where('id',$tour->id)->exists();
-        if ($like){
+
+    public function likeTour(Tour $tour)
+    {
+        $like = $this->likes()->where('id', $tour->id)->exists();
+        if ($like) {
             $this->likes()->detach($tour);
-        } else{
+        } else {
             $this->likes()->sync($tour);
         }
 

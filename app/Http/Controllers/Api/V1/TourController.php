@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\NewTourRequest;
 use App\Http\Resources\TourResource;
 use App\Models\Category;
@@ -12,7 +13,7 @@ class TourController extends Controller
 {
     public function store(NewTourRequest $request)
     {
-      $article = Tour::query()->create([
+        $article = Tour::query()->create([
             'title' => $request->get('title'),
             'dec' => $request->get('dec'),
             'befor_dec' => $request->get('befor_dec'),
@@ -34,7 +35,7 @@ class TourController extends Controller
     }
 
 
-    public function update(Tour $tour,Request $request)
+    public function update(Tour $tour, Request $request)
     {
 
 
@@ -83,7 +84,6 @@ class TourController extends Controller
     }
 
 
-
     public function index(Tour $tour)
     {
         return response()->json([
@@ -107,14 +107,14 @@ class TourController extends Controller
     }
 
     public function indexcategory($Id)
-{
-    $category = Category::findOrFail($Id);
-    $tours = $category->tours()->get();
+    {
+        $category = Category::findOrFail($Id);
+        $tours = $category->tours()->get();
 
-     return response()->json([
-        'data' => $tours
-    ])->setStatusCode(200);
-}
+        return response()->json([
+            'data' => $tours
+        ])->setStatusCode(200);
+    }
 
 
 }

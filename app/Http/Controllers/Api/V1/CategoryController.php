@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\NewCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
@@ -14,7 +15,7 @@ class CategoryController extends Controller
     {
         $category = category::query()->create([
             'title' => $request->get('title'),
-            'category_id'=>$request->get('category_id'),
+            'category_id' => $request->get('category_id'),
         ]);
 
         return response()->json([
@@ -29,11 +30,11 @@ class CategoryController extends Controller
 
         $category->update([
             'title' => $request->get('title'),
-            'category_id'=>$request->get('category_id'),
+            'category_id' => $request->get('category_id'),
         ]);
 
         return response()->json([
-            'data' =>  new CategoryResource($category)
+            'data' => new CategoryResource($category)
         ])->setStatusCode(200);
 
     }
@@ -42,7 +43,7 @@ class CategoryController extends Controller
     {
 
         return response()->json([
-            'data' =>DB::select('SELECT * FROM `categories` WHERE category_id IS NULL')
+            'data' => DB::select('SELECT * FROM `categories` WHERE category_id IS NULL')
         ])->setStatusCode(200);
 
     }
@@ -76,11 +77,10 @@ class CategoryController extends Controller
     {
 
 
-
-            $category->delete();
-            return response()->json([
-                'message' => 'deleted category'
-            ])->setStatusCode(200);
+        $category->delete();
+        return response()->json([
+            'message' => 'deleted category'
+        ])->setStatusCode(200);
 
     }
 }

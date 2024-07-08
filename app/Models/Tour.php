@@ -8,13 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Tour extends Model
 {
     use HasFactory;
-    protected $guarded=[];
 
-    public function user(){
+    protected $table = 'tours';
+
+    protected $fillable = [
+        'name',
+        'dec',
+    ];
+
+    protected $guarded = [];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 

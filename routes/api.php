@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\V1\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,35 +15,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', 'App\Http\Controllers\LoginController@store');
-Route::get('/get-me', 'App\Http\Controllers\users\user@get_me');
+Route::get('/up', 'App\Http\Controllers\test\test@index');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function () {
+    Route::post('/login', 'App\Http\Controllers\Api\V1\LoginController@store');
+    Route::post('/register', 'App\Http\Controllers\Api\V1\LoginController@store');
+    Route::post('/get-me', 'App\Http\Controllers\Api\V1\user@get_me');
+
+//    Route::post('/users/store',[\App\Http\Controllers\Api\V1\UserController::class,'store']);
+//    Route::post('/users/update/{user}',[\App\Http\Controllers\Api\V1\UserController::class,'update']);
+//    Route::get('/users/show',[\App\Http\Controllers\Api\V1\UserController::class,'show']);
+//    Route::post('/users/login',[\App\Http\Controllers\Api\V1\LoginController::class,'login']);
+//
+//    Route::post('/categories/store',[CategoryController::class,'store']);
+//    Route::post('/categories/update/{category}',[CategoryController::class,'update']);
+//    Route::get('/categories/show',[CategoryController::class,'show']);
+//    Route::get('/categories/showchild',[CategoryController::class,'showchild']);
+//    Route::delete('/categories/delete/{category}',[CategoryController::class,'destroy']);
 });
 
-<<<<<<< HEAD
-Route::post('/users/store',[\App\Http\Controllers\UserController::class,'store']);
-Route::post('/users/update/{user}',[\App\Http\Controllers\UserController::class,'update']);
-Route::get('/users/show',[\App\Http\Controllers\UserController::class,'show']);
-Route::post('/users/login',[\App\Http\Controllers\LoginController::class,'login']);
 
 
 
 
-Route::post('/categories/store',[CategoryController::class,'store']);
-Route::post('/categories/update/{category}',[CategoryController::class,'update']);
-Route::get('/categories/show',[CategoryController::class,'show']);
-Route::get('/categories/showchild',[CategoryController::class,'showchild']);
-Route::delete('/categories/delete/{category}',[CategoryController::class,'destroy']);
 
 
-Route::middleware('auth:sanctum')->group(function (){
 
-    Route::delete('/users/logout',[\App\Http\Controllers\LoginController::class,'destroy']);
-
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::delete('/users/logout', [\App\Http\Controllers\Api\V1\LoginController::class, 'destroy']);
 });
-=======
-Route::get('/test', 'App\Http\Controllers\test\test@index');
->>>>>>> b34b8033f47f6e9764005c90d718e4e327b9afe5
+
